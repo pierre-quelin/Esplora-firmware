@@ -9,22 +9,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
       with:
         submodules: recursive
-    
+
     - name: Install dependencies
       run: |
         sudo apt update
         sudo apt install -y build-essential gcc-avr avr-libc binutils-avr make avrdude git
-    
+
     - name: Build firmware
       run: make
-    
+
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: success()
       with:
         name: firmware-build
